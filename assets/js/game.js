@@ -1,6 +1,13 @@
 /* eslint-disable vars-on-top */
 /* eslint-disable no-var */
 
+//    !PSEUDO CODE   //
+//* `WIN` - Player robot has defeated all enemy-robots //
+//*     * Fight all enemy-robots
+//*     * Defeat each enemy-robot
+//* `LOSE` - Player robot's health is zero or less //
+//! END PSEUDO CODE //
+
 // *Creates a function named 'Fight'
 
 var playerName = window.prompt("What is your robot's name?");
@@ -8,15 +15,19 @@ var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-// You can also log multiple values at once like this
-console.log(playerName, playerAttack, playerHealth);
-
-var enemyName = 'Roboto';
+var enemyNames = ['Dr. Gero', `Android 16`, `Android 17`, `Android 18`];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
+console.log(enemyNames);
+for (var i = 0; i < enemyNames.length; i++) {
+    console.log(enemyNames[i]);
+    console.log(i);
+    console.log(`${enemyNames[i]} is at ${i}index`);
+}
+
 // Math Functions
-var fight = function () {
+var fight = function (enemyName) {
     // Alert players that they are starting the round
     window.alert('Welcome to Robot Gladiators!');
 
@@ -60,4 +71,6 @@ var fight = function () {
     }
 };
 
-fight();
+for (var i = 0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+}

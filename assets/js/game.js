@@ -2,8 +2,24 @@
 /* eslint-disable no-var */
 
 /* player and enemy variabls */
+
+var randomNumber = (min, max) => {
+    var value = Math.floor(Math.random() * (max - min + 1));
+    return value;
+};
+
+var getPlayerName = function () {
+    var name = ``;
+
+    while (name === `` || name === null) {
+        name = prompt(`What is your robot's name?`);
+    }
+    console.log(`Your robot's name is ${name}`);
+    return name;
+};
+
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
@@ -50,11 +66,6 @@ var enemyInfo = [
         attack: randomNumber(10, 14),
     },
 ];
-
-var randomNumber = (min, max) => {
-    var value = Math.floor(Math.random() * (max - min + 1));
-    return value;
-};
 
 //* Fight function (now with parameter for enemy's name)
 var fight = function (enemy) {

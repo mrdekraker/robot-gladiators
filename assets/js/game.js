@@ -83,6 +83,15 @@ var startGame = () => {
             var pickedEnemyName = enemyNames[i]; // (i += 1) = i++
             enemyHealth = 50;
             fight(pickedEnemyName);
+
+            if (playerHealth > 0 && i < enemyNames.length - 1) {
+                var storeConfirm = window.confirm(
+                    `The fight is over. Would you like to visit the store before the next round?`
+                );
+                if (storeConfirm) {
+                    shop();
+                }
+            }
         } else {
             window.alert(`You have lost your robot in battle! Game over!`);
         }
@@ -103,6 +112,51 @@ var endGame = () => {
         startGame();
     } else {
         window.alert(`Thank you for playing (DBZ) Robot Gladiators! Come back soon!`);
+    }
+};
+
+var shop = () => {
+    var shopOptionPrompt = window.prompt(
+        `Would you like to REFILL your health, UPGRADE your atack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.`
+    );
+
+    // use SWITCH to carry out action
+    switch (shopOptionPrompt) {
+        case `REFILL`:
+        case `refill`:
+            if (playerMoney >= 7) {
+                window.alert(`Refilling player's health by 20 for 7 dollars.`);
+
+                // increase health and decrease money
+                playerHealth += 20;
+                playerMoney -= 7;
+            } else {
+                window.alert(`You don't have enough money!`);
+            }
+            break;
+
+        case `UPGRADE`:
+        case `upgrade`:
+            if (playerMoney >= 7) {
+                window.alert(`Upgrading player's attack by 6 for 7 dollars.`);
+
+                // increase attack and decrease money
+                playerAttack += 6;
+                playerMoney -= 7;
+            } else {
+                window.alert(`You don't have enough money!`);
+            }
+            break;
+
+        case `LEAVE`:
+        case `leave`:
+            window.alert(`Leaving the store.`);
+            break;
+
+        default:
+            window.alert(`You did not piack a valid option. Please Try Again.`);
+            shop();
+            break;
     }
 };
 

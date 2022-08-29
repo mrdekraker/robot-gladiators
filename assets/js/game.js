@@ -67,6 +67,8 @@ var enemyInfo = [
     },
 ];
 
+<<<<<<< HEAD
+=======
 // Recursive Method for blank or null responses
 var fightOrSkip = () => {
     // Do you want to fight? Are you tryna catch these hands?
@@ -92,6 +94,7 @@ var fightOrSkip = () => {
     return false;
 };
 
+>>>>>>> feature/random-order
 //* Fight function (now with parameter for enemy's name)
 var fight = function (enemy) {
     var isPlayerTurn = true;
@@ -175,12 +178,22 @@ var startGame = () => {
 };
 
 var endGame = () => {
-    if (playerInfo.health > 0) {
-        window.alert(`The game has now ended. Let's see how you did! You now have a score of ${playerInfo.money}`);
-    } else {
-        window.alert(`You've lost your robot in battle.`);
+    window.alert(`The game has now ended. Let's see how you did!`);
+
+    var highScore = localStorage.getItem(`highscore`);
+    if (highScore === null) {
+        highScore = 0;
     }
 
+    if (playerInfo.money > highSCore) {
+        localStorage.setItem(`highscore`, playerInfo.money);
+        localStorage.setItem(`name`, playerInfo.name);
+
+        alert(`${playerInfo.name} now has the high score of ${playerInfo.money}!`);
+    } else {
+        alert(`${playerInfo.name} did not beat the high score of ${highScore}. Maybe next time!`);
+    }
+    
     var playAgainConfirm = window.confirm(`Would you like to play again?`);
 
     if (playAgainConfirm) {

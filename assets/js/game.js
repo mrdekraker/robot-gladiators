@@ -18,6 +18,7 @@ var getPlayerName = function () {
     return name;
 };
 
+<<<<<<< HEAD
 var playerInfo = {
     name: getPlayerName(),
     health: 100,
@@ -69,6 +70,8 @@ var enemyInfo = [
 
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> develop
 // Recursive Method for blank or null responses
 var fightOrSkip = () => {
     // Do you want to fight? Are you tryna catch these hands?
@@ -178,12 +181,22 @@ var startGame = () => {
 };
 
 var endGame = () => {
-    if (playerInfo.health > 0) {
-        window.alert(`The game has now ended. Let's see how you did! You now have a score of ${playerInfo.money}`);
-    } else {
-        window.alert(`You've lost your robot in battle.`);
+    window.alert(`The game has now ended. Let's see how you did!`);
+
+    var highScore = localStorage.getItem(`highscore`);
+    if (highScore === null) {
+        highScore = 0;
     }
 
+    if (playerInfo.money > highSCore) {
+        localStorage.setItem(`highscore`, playerInfo.money);
+        localStorage.setItem(`name`, playerInfo.name);
+
+        alert(`${playerInfo.name} now has the high score of ${playerInfo.money}!`);
+    } else {
+        alert(`${playerInfo.name} did not beat the high score of ${highScore}. Maybe next time!`);
+    }
+    
     var playAgainConfirm = window.confirm(`Would you like to play again?`);
 
     if (playAgainConfirm) {
@@ -217,5 +230,54 @@ var shop = () => {
             break;
     }
 };
+
+var playerInfo = {
+    name: getPlayerName(),
+    health: 100,
+    attack: 10,
+    money: 10,
+    reset() {
+        this.health = 100;
+        this.money = 10;
+        this.attack = 10;
+    },
+    refillHealth() {
+        if (this.money >= 7) {
+            window.alert(`Refilling player's health by 20 for 7 dollars.`);
+            this.health += 20;
+            this.money -= 7;
+        } else {
+            window.alert(`You don't have enough money!`);
+        }
+    },
+    upgradeAttack() {
+        if (this.money >= 7) {
+            window.alert(`Upgrading player's attack by 6 for 7 dollars.`);
+            this.attack += 6;
+            this.money -= 7;
+        } else {
+            window.alert(`You don't have enough money!`);
+        }
+    },
+};
+
+var enemyInfo = [
+    {
+        name: `Dr. Gero`,
+        attack: randomNumber(10, 14),
+    },
+    {
+        name: `Andriod 16`,
+        attack: randomNumber(10, 14),
+    },
+    {
+        name: `Andriod 17`,
+        attck: randomNumber(10, 14),
+    },
+    {
+        name: `Andriod 18`,
+        attack: randomNumber(10, 14),
+    },
+];
 
 startGame();
